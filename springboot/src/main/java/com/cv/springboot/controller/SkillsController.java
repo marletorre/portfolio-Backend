@@ -24,25 +24,25 @@ public class SkillsController {
         this.skiServ=skiServ;
     }
     
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Skills>> obtenerSkills(){
             List<Skills> skills=skiServ.buscarSkill();
             return new ResponseEntity<>(skills,HttpStatus.OK);
     }
     
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Skills> editarSkills(@RequestBody Skills skills){
         Skills editSkills=skiServ.editarSkill(skills);
         return new ResponseEntity<>(editSkills,HttpStatus.OK);
     }
     
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Skills> agregarSkills(@RequestBody Skills skills){
         Skills agreSkill=skiServ.agregarSkill(skills);
         return new ResponseEntity<>(agreSkill,HttpStatus.CREATED);
     }
     
-    @DeleteMapping("/delete/{idSkill}")
+    @DeleteMapping("/{idSkill}")
     public ResponseEntity<?> borrarProyecto(@PathVariable("idSkill") Integer idSkill){
             skiServ.borrarSkill(idSkill);
         return new ResponseEntity<>(HttpStatus.OK);

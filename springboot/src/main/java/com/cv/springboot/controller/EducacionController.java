@@ -24,25 +24,25 @@ public class EducacionController {
         this.eduServ=eduServ;
     }
     
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Educacion>> obtenerEducacion(){
             List<Educacion> educaciones=eduServ.buscarEducaciones();
             return new ResponseEntity<>(educaciones,HttpStatus.OK);
     }
     
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Educacion> editarEducacion(@RequestBody Educacion educacion){
         Educacion editEducacion=eduServ.editarEducacion(educacion);
         return new ResponseEntity<>(editEducacion,HttpStatus.OK);
     }
     
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Educacion> agregarEducacion(@RequestBody Educacion educacion){
         Educacion agreEducacion=eduServ.agregarEducacion(educacion);
         return new ResponseEntity<>(agreEducacion,HttpStatus.CREATED);
     }
     
-    @DeleteMapping("/delete/{idEducacion}")
+    @DeleteMapping("/{idEducacion}")
     public ResponseEntity<?> borrarEducacion(@PathVariable("idEducacion") Integer idEducacion){
             eduServ.borrarEducacion(idEducacion);
         return new ResponseEntity<>(HttpStatus.OK);

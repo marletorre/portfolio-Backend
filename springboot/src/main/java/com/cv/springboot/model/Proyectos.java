@@ -18,17 +18,21 @@ public class Proyectos {
     private int idProyecto;
     private String nombreProyecto;
     private String descripcion;
+    private String urlProyecto;
     private String imgProyecto;
 
     public Proyectos() {
     }
 
-    public Proyectos(int idProyecto, String nombreProyecto, String descripcion, String imgProyecto) {
+    public Proyectos(int idProyecto, String nombreProyecto, String descripcion, String urlProyecto, String imgProyecto) {
         this.idProyecto = idProyecto;
         this.nombreProyecto = nombreProyecto;
         this.descripcion = descripcion;
+        this.urlProyecto = urlProyecto;
         this.imgProyecto = imgProyecto;
     }
+
+   
     
     
 }

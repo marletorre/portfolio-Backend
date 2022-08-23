@@ -4,8 +4,10 @@ import com.cv.springboot.model.Usuario;
 import com.cv.springboot.service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +23,27 @@ public class UsuarioController {
         this.usuServ=usuServ;
     }
     
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Usuario> obtenerUsuario(@PathVariable("id") Long id){
             Usuario usuario=usuServ.buscarUsuario(id);
             return new ResponseEntity<>(usuario,HttpStatus.OK);
     }
     
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Usuario> editarUsuario(@RequestBody Usuario usuario){
         Usuario updateUsuario=usuServ.editarUsuario(usuario);
         return new ResponseEntity<>(updateUsuario,HttpStatus.OK);
+    }
+    
+    @PostMapping
+    public ResponseEntity<Usuario> agregarUsuario(@RequestBody Usuario usuario){
+        Usuario agreUsuario=usuServ.agregarUsuario(usuario);
+        return new ResponseEntity<>(agreUsuario,HttpStatus.CREATED);
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> borrarUsuario(@PathVariable("id") Long id){
+        usuServ.borrarUsuario(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

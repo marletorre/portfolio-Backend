@@ -24,25 +24,25 @@ public class ProyectosController {
         this.proServ=proServ;
     }
     
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Proyectos>> obtenerProyectos(){
             List<Proyectos> proyectos=proServ.buscarProyecto();
             return new ResponseEntity<>(proyectos,HttpStatus.OK);
     }
     
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Proyectos> editarProyectos(@RequestBody Proyectos proyectos){
         Proyectos editProyectos=proServ.editarProyecto(proyectos);
         return new ResponseEntity<>(editProyectos,HttpStatus.OK);
     }
     
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Proyectos> agregarProyectos(@RequestBody Proyectos proyecto){
         Proyectos agreProyecto=proServ.agregarProyecto(proyecto);
         return new ResponseEntity<>(agreProyecto,HttpStatus.CREATED);
     }
     
-    @DeleteMapping("/delete/{idExperiencia}")
+    @DeleteMapping("/{idExperiencia}")
     public ResponseEntity<?> borrarProyecto(@PathVariable("idProyecto") Integer idProyecto){
             proServ.borrarProyecto(idProyecto);
         return new ResponseEntity<>(HttpStatus.OK);
